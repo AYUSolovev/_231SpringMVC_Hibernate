@@ -24,14 +24,12 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@ModelAttribute("user") User user,@PathVariable("id") Long id) {
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         return "update";
     }
 
     @PatchMapping("/{id}")
     public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-        System.out.println(user.getId());
-        System.out.println(user.getFirstName());
         userService.updateUser(id, user);
         return "redirect:/users";
     }
@@ -45,13 +43,11 @@ public class UserController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
         model.addAttribute("id", id);
-        System.out.println(id);
         return "delete";
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
-        System.out.println(id);
         userService.deleteUser(id);
         return "redirect:/users";
     }
